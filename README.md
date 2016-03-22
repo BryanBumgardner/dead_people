@@ -8,9 +8,12 @@ February - March 2016
 That being said, it's worth studying how it fits in our popular culture. 
 
 ### Roadmap
-#### data: contains pickles of various data sets to promote reproducibility. 
-#### scripts: various scripts done outside of the IPython notebook.
-#### movie_deaths_notebook: a detailed walkthrough of the process, including visualizations. 
+#### data: 
+contains pickles of various data sets to promote reproducibility. 
+#### scripts: 
+various scripts done outside of the IPython notebook.
+#### movie_deaths_notebook: 
+a detailed walkthrough of the process, including visualizations. 
 
 
 ### Major questions:
