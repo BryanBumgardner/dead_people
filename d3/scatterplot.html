@@ -70,11 +70,17 @@ var yValue = function(d) { return d.BoxOffice;}, // data -> value
 var cValue = function(d) { return d.Genre;},
     color = d3.scale.category10(); // This automatically colorizes the genres based on a ten scale category. Should be fine for now. 
 
-//var deaths = function(d) { return d.deathcount;};
+var deaths = function(d) { return d.deathcount;};
 
-// var rscale = d3.scale.linear()
-//              .domain([1, d3.max(function(d) { return d.deathcount;};)])
-//              .range([1, 12]);
+// The shape of the d.deathcount is incorrect and is not 
+ var rscale = d3.scale.ordinal()
+            .domain([0, 49,000])
+            .range([1000, 2000]);
+
+// Look at the variables above and copy how they have structure their scales and data calls 
+
+// Poorly attempting a zoom...
+
 
 
 // add the graph canvas to the body of the webpage
@@ -90,14 +96,14 @@ var tooltip = d3.select("body").append("div")
     .style("opacity", 0);
 
 // load data
-d3.csv("final_data_frame_complete.csv", function(error, data) {
+d3.csv("final_data_frame_minus_outliers.csv", function(error, data) {
 
    //change string (from CSV) into number format
   data.forEach(function(d) {
     d.ProductionBudget = +d.ProductionBudget;
     d.BoxOffice = +d.BoxOffice;
     d.deathcount = +d.deathcount;
-//    console.log(d);
+    //console.log(d);
   });
 
   // don't want dots overlapping axis, so add in buffer to data domain
@@ -134,7 +140,7 @@ d3.csv("final_data_frame_complete.csv", function(error, data) {
     .enter().append("circle")
       .attr("class", "dot")
       .attr("r", 3.5)
-       //function(d) { return d.deathcount)} // right here is where you attach the size of the dots to their values 
+       //function(d) { return d.deathcount * .001}  // right here is where you attach the size of the dots to their values 
       .attr("cx", xMap)
       .attr("cy", yMap)
       .style("fill", function(d) { return color(cValue(d));}) 

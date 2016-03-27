@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+ 
+<style>
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #eee;
+    shape-rendering: crispEdges;
+}
+ 
+.axis text {
+    font-family: sans-serif;
+    font-size: 11px;
+}
+ 
+.loading {
+    font-family: sans-serif;
+    font-size: 15px;
+}
+ 
+.circle {
+    fill: #222;
+}
+</style>
+ 
+ 
+<div id="punchcard"></div>
+ 
+<script src="http://d3js.org/d3.v2.min.js"></script>
+
+<script>
+var w = 940,
+    h = 300,
+    pad = 20,
+    left_pad = 100;
+   // Data_url = '/data.json';
+
+var svg = d3.select("#punchcard")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+var x = d3.scale.linear().domain([0, 23]).range([left_pad, w-pad]),
+    y = d3.scale.linear().domain([0, 6]).range([pad, h-pad*2]);
+
+</script>
