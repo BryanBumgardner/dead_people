@@ -73,13 +73,13 @@ var cValue = function(d) { return d.Genre;},
 var deaths = function(d) { return d.deathcount;};
 
 // The shape of the d.deathcount is incorrect and is not 
- var rscale = d3.scale.ordinal()
-            .domain([0, 49,000])
-            .range([1000, 2000]);
+ var rscale = d3.scale.log()
+            .domain([1, 500])
+            .range([1, 20]);
 
 // Look at the variables above and copy how they have structure their scales and data calls 
 
-// Poorly attempting a zoom...
+// Poorly attempting a zoom...`
 
 
 
@@ -139,7 +139,7 @@ d3.csv("final_data_frame_minus_outliers.csv", function(error, data) {
       .data(data)
     .enter().append("circle")
       .attr("class", "dot")
-      .attr("r", 3.5)
+      .attr("r", function(d) { return rscale(d.deathcount) })
        //function(d) { return d.deathcount * .001}  // right here is where you attach the size of the dots to their values 
       .attr("cx", xMap)
       .attr("cy", yMap)
