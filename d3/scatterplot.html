@@ -23,6 +23,11 @@ body {
 
 .tooltip {
   position: absolute;
+  line-height: 1;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+  padding: 6px;
   width: 200px;
   height: 28px;
   pointer-events: none;
@@ -43,12 +48,14 @@ var margin = {top: 20, right: 20, bottom: 30, left: 40},
  * axis - sets up axis
 
 
-Desired Y value: Production Budget
-Desired X Value: BoxOffice
-Dot Color: Genre
-Dot Size: deathcount
-Tooltip:
-Show all data
+To do:
+1. Fix Log Scale of circle radius -  THIS IS MODERATELY FUNCTIONING RIGHT NOW
+2. Provide legend describing circle size to death counts
+3. Custom color scale for the circles
+4. Advanced tooltips with more information / backgrounds so it's readable
+5. Pinch and zoom functions
+6. Add to a real webpage
+7. Fix circles overlapping the axes 
 
 
 
@@ -80,6 +87,12 @@ var deaths = function(d) { return d.deathcount;};
 // Look at the variables above and copy how they have structure their scales and data calls 
 
 // Poorly attempting a zoom...`
+
+
+// Attempting a custom color scale. I think there are 9 genres total?
+//var color = d3.scale.ordinal()
+  //.domain(["New York", "San Francisco", "Austin"])
+  //.range(["#FF0000", "#009933" , "#0000FF"]);
 
 
 
@@ -140,7 +153,6 @@ d3.csv("final_data_frame_minus_outliers.csv", function(error, data) {
     .enter().append("circle")
       .attr("class", "dot")
       .attr("r", function(d) { return rscale(d.deathcount) })
-       //function(d) { return d.deathcount * .001}  // right here is where you attach the size of the dots to their values 
       .attr("cx", xMap)
       .attr("cy", yMap)
       .style("fill", function(d) { return color(cValue(d));}) 
